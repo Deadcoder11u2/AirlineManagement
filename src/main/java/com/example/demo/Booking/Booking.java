@@ -21,7 +21,6 @@ import lombok.Setter;
 public class Booking {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String BookingId;
 	
 	@Enumerated(EnumType.STRING)
