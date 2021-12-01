@@ -15,17 +15,17 @@ import com.example.demo.Flight.FlightService;
 
 @RestController
 public class AirlineController {
-	
+
 	@Autowired
 	FlightService flightService;
-	
+
 	@RequestMapping("/")
-	public ModelAndView home () {
-	    ModelAndView modelAndView = new ModelAndView();
-	    modelAndView.setViewName("home");
-	    return modelAndView;
+	public ModelAndView home() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("airline");
+		return modelAndView;
 	}
-	
+
 	@GetMapping(value = "/find")
 	@ResponseBody
 	public List<Flight> searchFlights(@RequestParam String source, @RequestParam String destination) {

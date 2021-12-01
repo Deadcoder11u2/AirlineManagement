@@ -1,12 +1,16 @@
 package com.example.demo.Flight;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.example.demo.Booking.Booking;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,16 +23,33 @@ import lombok.NoArgsConstructor;
 public class Flight {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+	@Column(name = "flight_id")
+	private Long flightId;
+	
+	@Column(name = "arrival_time",nullable = false)
 	private LocalDateTime arrival;
+	
+	@Column(name = "departure_time", nullable = false)
 	private LocalDateTime departure;
-	@Column(nullable = false)
+	
+	@Column(name = "capacity", nullable = false)
 	private Integer capacity;
-	@Column(nullable = false, length = 3)
+	
+	@Column(name = "source", nullable = false, length = 3)
 	private String source;
-	@Column(nullable = false, length = 3)
+	
+	@Column(name = "destination", nullable = false, length = 3)
 	private String destination;
-	public Flight(LocalDateTime arrival, LocalDateTime departure, Integer capacity, String source, String destination) {
+	
+	@OneToMany(mappedBy="flight")
+	private Set<Booking> bookings;
+	
+	public Flight(
+			LocalDateTime arrival, 
+			LocalDateTime departure, 
+			Integer capacity, 
+			String source, 
+			String destination) {
 		super();
 		this.arrival = arrival;
 		this.departure = departure;
