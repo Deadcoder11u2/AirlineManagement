@@ -115,7 +115,8 @@ public class Employee implements UserDetails {
 			String firstName, 
 			String lastName,
 			String userName, 
-			String password) {
+			String password,
+			Character gender) {
 		super();
 		this.department = department;
 		this.salary = price;
@@ -124,6 +125,7 @@ public class Employee implements UserDetails {
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
+		this.gender = gender;
 	}
 
 }

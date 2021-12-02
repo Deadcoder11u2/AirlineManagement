@@ -15,5 +15,6 @@ public class RegistrationAdmin {
 	private Integer age;
 	private String password;
 	private Double salary;
+	private Character gender;
 	private Department department;
 }

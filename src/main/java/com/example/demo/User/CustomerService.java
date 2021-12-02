@@ -24,8 +24,16 @@ public class CustomerService implements UserDetailsService {
 		}
 		BCryptPasswordEncoder passwordencoder = new BCryptPasswordEncoder();
 		String password = passwordencoder.encode(customer.getPassword());
+		System.out.println(customer.getPhoneNo());
 		customerRepository
-				.save(new User(customer.getFirstName(), customer.getLastName(), customer.getEmail(), password));
+				.save(new User(
+						customer.getFirstName(), 
+						customer.getLastName(), 
+						customer.getEmail(), 
+						password, 
+						customer.getGender(),
+						customer.getPhoneNo()
+				));
 		return "User Successfully Register";
 	}
 }

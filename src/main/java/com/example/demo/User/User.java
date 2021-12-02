@@ -86,6 +86,10 @@ public class User implements UserDetails {
 	public boolean isAccountNonExpired() {
 		return true;
 	}
+	
+	public User(Long id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -114,11 +118,16 @@ public class User implements UserDetails {
 			String firstName, 
 			String lastName, 
 			String email, 
-			String password) {
+			String password,
+			Character gender,
+			String phoneno
+			) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.gender = gender;
+		this.phoneNo = phoneno;
 	}
 }

@@ -30,7 +30,7 @@ public class WebSecurityConfigurationAdmin extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.authorizeHttpRequests().antMatchers("/admin").permitAll()
+		.authorizeHttpRequests().antMatchers("/admin/**").hasAnyAuthority("ADMIN")
 		.and().formLogin()
 		.and().logout().clearAuthentication(true).logoutSuccessUrl("/")
 			.deleteCookies("JSESSIONID").invalidateHttpSession(true)

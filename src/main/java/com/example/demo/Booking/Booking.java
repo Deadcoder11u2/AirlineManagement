@@ -1,5 +1,9 @@
 package com.example.demo.Booking;
 
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -24,26 +28,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "booking")
+@Table(name = "ticket")
 public class Booking {
 
 	@Id
 	@Column(name = "booking_id")
 	private String BookingId;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "seat_class", nullable = false, length = 8)
-	private SeatClass seatClass;
-
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "payment_mode", nullable = false, length = 10)
 	private PaymentMode paymentMode;
 
 	@Column(name = "price", nullable = false)
 	private Double price;
-
-	@OneToMany(mappedBy = "booking")
-	private Set<Passenger> passengers;
 
 	@ManyToOne
 	@JoinColumn(name = "flight_id")
@@ -53,10 +50,14 @@ public class Booking {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	public Booking(String bookingId, Set<Passenger> passengers) {
+	@OneToMany(mappedBy = "booking")
+	private Set<Passenger> passengers;
+	
+	public Booking(String bookingId) {
 		super();
 		BookingId = bookingId;
-		this.passengers = passengers;
-
+		this.paymentMode = PaymentMode.CREDITCARD;
+		this.price = 1200.00;
+		
 	}
 }

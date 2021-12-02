@@ -23,6 +23,7 @@ public class EmployeeService implements UserDetailsService {
 	public String registerAdmin(RegistrationAdmin admin) {
 		SCryptPasswordEncoder encoder = new SCryptPasswordEncoder();
 		String password = encoder.encode(admin.getPassword());
+		System.out.println(admin.getSalary());
 		employeeRepository.save(
 			new Employee(
 					Department.CUSTOMER_SERVICE, 
@@ -31,8 +32,9 @@ public class EmployeeService implements UserDetailsService {
 					admin.getFirstName(), 
 					admin.getLastName(), 
 					admin.getFirstName() + "." + admin.getLastName() + "." + 
-							LocalDate.now().minusYears(admin.getAge()).getYear(), 
-					password
+							LocalDate.now().minusYears(admin.getAge()).getYear(),
+					password,
+					admin.getGender()
 			)
 		);
 		return "Admin successfully registered";

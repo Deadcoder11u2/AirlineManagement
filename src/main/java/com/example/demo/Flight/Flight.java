@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.example.demo.Airline.Airline;
 import com.example.demo.Booking.Booking;
 
 import lombok.AllArgsConstructor;
@@ -41,6 +44,10 @@ public class Flight {
 	@Column(name = "destination", nullable = false, length = 3)
 	private String destination;
 	
+	@ManyToOne
+	@JoinColumn()
+	private Airline airline;
+	
 	@OneToMany(mappedBy="flight")
 	private Set<Booking> bookings;
 	
@@ -56,6 +63,10 @@ public class Flight {
 		this.capacity = capacity;
 		this.source = source;
 		this.destination = destination;
+	}
+	
+	public Flight(Long id) {
+		this.flightId = id;
 	}
 	
 }

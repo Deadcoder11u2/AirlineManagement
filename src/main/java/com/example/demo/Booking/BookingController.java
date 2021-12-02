@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.User.Passenger.BookingRequest;
 
 @Controller
-@RequestMapping(path = "/srikanth")
+@RequestMapping("/book")
 public class BookingController {
-
+	
 	@Autowired
 	public BookingService bookingService;
-
-	@PostMapping(path = "/book")
+	
+	@PostMapping
 	@ResponseBody
-	public String bookTicket(@RequestBody BookingRequest request) {
+	public String bookTicker(@RequestBody BookingRequest request) {
+		System.out.println();
 		return bookingService.bookTicket(request);
 	}
 }
